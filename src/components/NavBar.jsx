@@ -28,12 +28,6 @@ const getNavigation = (user) => {
     return []
 }
 
-const navigation = [
-    { name: 'Home', href: '#', current: true },
-    { name: 'Register', href: '#', current: false },
-    { name: 'Login', href: '#', current: false },
-]
-
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }

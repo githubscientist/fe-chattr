@@ -2,11 +2,28 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ToastProvider from "./components/ToastProvider";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import LayoutWrapper from "./wrappers/LayoutWrapper";
 
 const routes = [
   {
     path: "/",
-    element: <HomePage />
+    element: <LayoutWrapper />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />
+      },
+      {
+        path: "/login",
+        element: <LoginPage />
+      }
+    ]
   }
 ];
 
