@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { selectEmail, selectName, selectPassword, setEmail, setName, setPassword } from "../redux/features/auth/registerSlice";
+import authServices from "../services/authServices";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
 
@@ -13,7 +15,24 @@ const RegisterPage = () => {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        console.log(name, email, password);
+
+        // handle the registration here
+        authServices.register({ name, email, password })
+            .then((response) => {
+                toast.success(response.data.message);
+
+                // clear the form
+                dispatch(setName(""));
+                dispatch(setEmail(""));
+                dispatch(setPassword(""));
+
+                setTimeout(() => {
+                    navigate("/login");
+                }, 500);
+            })
+            .catch((err) => {
+                toast.error(err.response.data.message);
+            })
     }
 
     return (
