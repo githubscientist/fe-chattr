@@ -1,6 +1,10 @@
 const DashboardPage = () => {
     return (
-        <div>DashboardPage</div>
+        <div>
+            <h1
+                className="text-center text-3xl font-semibold text-gray-800"
+            >Dashboard</h1>
+        </div>
     )
 }
 

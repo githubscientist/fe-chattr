@@ -14,27 +14,25 @@ const getNavigation = (user) => {
             return [
                 { name: 'Home', href: '/', current: true },
                 { name: 'Dashboard', href: '/dashboard', current: false },
-                { name: 'Logout', href: '/logout', current: false },
+                { name: 'Logout', href: '/dashboard/logout', current: false },
             ]
         } else if (user.role === 'user') {
             return [
                 { name: 'Home', href: '/', current: true },
                 { name: 'Profile', href: '/profile', current: false },
-                { name: 'Logout', href: '/logout', current: false },
+                { name: 'Logout', href: '/dashboard/logout', current: false },
             ]
         }
     }
 
-    return []
+    return [];
 }
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-function NavBar() {
-
-    const user = null;
+function NavBar({ user }) {
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
@@ -122,7 +120,7 @@ function NavBar() {
                                         </MenuItem>
                                         <MenuItem>
                                             <Link
-                                                to="#"
+                                                to="/dashboard/logout"
                                                 className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                                             >
                                                 Sign out

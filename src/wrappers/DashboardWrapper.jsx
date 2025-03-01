@@ -1,20 +1,24 @@
 import { Navigate, Outlet, useLoaderData } from "react-router";
 import NavBar from "../components/NavBar";
 
-const LayoutWrapper = () => {
+const DashboardWrapper = () => {
 
     const user = useLoaderData();
 
-    if (user) {
-        return <Navigate to="/dashboard" />
+    // console.log(user);
+
+    if (!user) {
+        return <Navigate to="/login" />
     }
 
     return (
         <>
-            <NavBar />
+            <NavBar
+                user={user.user}
+            />
             <Outlet />
         </>
     )
 }
 
-export default LayoutWrapper;
+export default DashboardWrapper;
