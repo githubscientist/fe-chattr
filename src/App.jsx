@@ -5,6 +5,8 @@ import ToastProvider from "./components/ToastProvider";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import LayoutWrapper from "./wrappers/LayoutWrapper";
+import { Provider } from "react-redux";
+import store from "./redux/app/store";
 
 const routes = [
   {
@@ -39,8 +41,10 @@ const router = createBrowserRouter(routes, {
 
 const App = () => {
   return <>
-    <ToastProvider />
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <ToastProvider />
+      <RouterProvider router={router} />
+    </Provider>
   </>
 }
 

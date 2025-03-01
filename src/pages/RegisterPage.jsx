@@ -1,13 +1,28 @@
-import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { selectEmail, selectName, selectPassword, setEmail, setName, setPassword } from "../redux/features/auth/registerSlice";
 
 const RegisterPage = () => {
+
+    const name = useSelector(selectName);
+    const email = useSelector(selectEmail);
+    const password = useSelector(selectPassword);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        console.log(name, email, password);
+    }
+
     return (
         <div className="container mt-5 text-center">
             <h1 className="text-4xl text-gray-800">Register for Chattr!</h1>
             <h4 className="text-xl text-gray-600">A simple chat application</h4>
 
             <div className="max-w-2xl mx-auto mt-5 bg-white shadow-md p-5 rounded-lg overflow-hidden border border-gray-200 px-5 py-5">
-                <form>
+                <form onSubmit={handleRegister}>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                             Name
@@ -17,6 +32,8 @@ const RegisterPage = () => {
                             id="name"
                             type="text"
                             placeholder="Name"
+                            value={name}
+                            onChange={(e) => dispatch(setName(e.target.value))}
                         />
                     </div>
                     <div className="mb-4">
@@ -28,6 +45,8 @@ const RegisterPage = () => {
                             id="username"
                             type="text"
                             placeholder="Email"
+                            value={email}
+                            onChange={(e) => dispatch(setEmail(e.target.value))}
                         />
                     </div>
                     <div className="mb-6">
@@ -39,12 +58,14 @@ const RegisterPage = () => {
                             id="password"
                             type="password"
                             placeholder="*********"
+                            value={password}
+                            onChange={(e) => dispatch(setPassword(e.target.value))}
                         />
                     </div>
                     <div className="flex items-center justify-between">
                         <button
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                            type="button"
+                            type="submit"
                         >
                             Register
                         </button>
