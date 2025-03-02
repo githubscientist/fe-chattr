@@ -12,11 +12,13 @@ const getNavigation = (user) => {
     } else if (user) {
         if (user.role === 'admin') {
             return [
-                { name: 'Dashboard', href: '/admin/dashboard', current: false },
+                { name: 'Dashboard', href: '/admin/dashboard', current: true },
                 { name: 'Logout', href: '/admin/dashboard/logout', current: false },
             ]
         } else if (user.role === 'user') {
             return [
+                { name: 'Dashboard', href: '/dashboard', current: true },
+                { name: 'Feed', href: '/dashboard/feed', current: false },
                 { name: 'Profile', href: '/profile', current: false },
                 { name: 'Logout', href: '/dashboard/logout', current: false },
             ]

@@ -13,6 +13,8 @@ import Logout from "./components/Logout";
 import AdminWrapper from "./wrappers/AdminWrapper";
 import UserDashboard from "./pages/user/UserDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import UserFeed from "./pages/user/UserFeed";
+import CreatePost from "./pages/user/CreatePost";
 
 const routes = [
   {
@@ -49,6 +51,15 @@ const routes = [
         path: "logout",
         element: <Logout />,
         hydrateFallbackElement: <p>Please wait...</p>
+      },
+      {
+        path: "feed",
+        element: <UserFeed />,
+        hydrateFallbackElement: <p>Loading Feed...</p>
+      },
+      {
+        path: "create-post",
+        element: <CreatePost />
       }
     ]
   },
