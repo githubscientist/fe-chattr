@@ -2,6 +2,8 @@ import { useLoaderData, useNavigate } from "react-router";
 import { HeartIcon as OutlineHeart } from "@heroicons/react/24/outline";
 import { HeartIcon as SolidHeart } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import postServices from "../../services/postServices";
+import { toast } from "react-toastify";
 
 const UserFeed = () => {
 
@@ -15,7 +17,23 @@ const UserFeed = () => {
         navigate("/dashboard/create-post");
     }
 
-    console.log(filled);
+    // console.log(filled);
+
+    const handleLike = (index) => {
+        const newFilled = [...filled];
+        newFilled[index] = !newFilled[index];
+        setFilled(newFilled);
+
+        // call the api to like or unlike the post
+        postServices.likePost(posts[index]._id)
+            .then(() => {
+                toast.success("Post liked successfully");
+            })
+            .catch((error) => {
+
+                toast.error("Failed to like post");
+            });
+    }
 
     return (
         <>
@@ -34,11 +52,7 @@ const UserFeed = () => {
 
                             <div className="flex justify-between mt-4">
                                 <div className="flex items-center"
-                                    onClick={() => {
-                                        const newFilled = [...filled];
-                                        newFilled[index] = !newFilled[index];
-                                        setFilled(newFilled);
-                                    }}
+                                    onClick={() => handleLike(index)}
                                 >
                                     {
                                         filled[index] ? <SolidHeart className="text-red-600 h-6 w-6" /> : <OutlineHeart className="w-6 h-6 text-black" />

@@ -16,6 +16,9 @@ const postServices = {
     deletePost: async (postId) => {
         return await instance.delete(`/posts/${postId}`);
     },
+    likePost: async (postId) => {
+        return await instance.post(`/posts/${postId}/like`);
+    }
 }
 
 export default postServices;
