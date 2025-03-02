@@ -5,7 +5,7 @@ const DashboardWrapper = () => {
 
     const user = useLoaderData();
 
-    // console.log(user);
+    console.log(user);
 
     if (!user) {
         return <Navigate to="/login" />

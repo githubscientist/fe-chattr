@@ -70,6 +70,13 @@ function NavBar({ user }) {
                                         {item.name}
                                     </Link>
                                 ))}
+                                {
+                                    user && (
+                                        <p
+                                            className='text-blue-300 px-3 py-2 text-sm font-medium'
+                                        >{user.email}</p>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
@@ -151,6 +158,13 @@ function NavBar({ user }) {
                             {item.name}
                         </DisclosureButton>
                     ))}
+                    {
+                        user && (
+                            <p
+                                className='text-blue-300 px-3 py-2 text-sm font-medium'
+                            >{user.email}</p>
+                        )
+                    }
                 </div>
             </DisclosurePanel>
         </Disclosure>
