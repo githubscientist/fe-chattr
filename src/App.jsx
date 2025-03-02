@@ -10,6 +10,9 @@ import store from "./redux/app/store";
 import DashboardWrapper from "./wrappers/DashboardWrapper";
 import authLoader from "./loaders/unit/authLoader";
 import Logout from "./components/Logout";
+import AdminWrapper from "./wrappers/AdminWrapper";
+import UserDashboard from "./pages/user/UserDashboard";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 const routes = [
   {
@@ -38,6 +41,27 @@ const routes = [
     loader: authLoader,
     hydrateFallbackElement: <p>Loading...</p>,
     children: [
+      {
+        index: true,
+        element: <UserDashboard />
+      },
+      {
+        path: "logout",
+        element: <Logout />,
+        hydrateFallbackElement: <p>Please wait...</p>
+      }
+    ]
+  },
+  {
+    path: "/admin/dashboard",
+    element: <AdminWrapper />,
+    loader: authLoader,
+    hydrateFallbackElement: <p>Loading admin...</p>,
+    children: [
+      {
+        path: "",
+        element: <AdminDashboard />
+      },
       {
         path: "logout",
         element: <Logout />,
