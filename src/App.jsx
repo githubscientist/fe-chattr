@@ -15,7 +15,7 @@ import UserDashboard from "./pages/user/UserDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import UserFeed from "./pages/user/UserFeed";
 import CreatePost from "./pages/user/CreatePost";
-import postsLoader from "./loaders/unit/postsLoader";
+import userFeedLoader from "./loaders/combined/userFeedLoader";
 
 const routes = [
   {
@@ -57,7 +57,7 @@ const routes = [
         path: "feed",
         element: <UserFeed />,
         hydrateFallbackElement: <p>Loading Feed...</p>,
-        loader: postsLoader
+        loader: userFeedLoader
       },
       {
         path: "create-post",

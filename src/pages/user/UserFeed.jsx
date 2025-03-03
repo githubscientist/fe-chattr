@@ -9,15 +9,15 @@ const UserFeed = () => {
 
     const navigate = useNavigate();
 
-    const posts = useLoaderData();
+    const { user, posts } = useLoaderData();
 
-    const [filled, setFilled] = useState(new Array(posts.length).fill(false));
+    const [filled, setFilled] = useState(posts.map(post => {
+        return post.likes.includes(user.user._id);
+    }));
 
     const handleCreatePost = () => {
         navigate("/dashboard/create-post");
     }
-
-    // console.log(filled);
 
     const handleLike = (index) => {
         const newFilled = [...filled];
@@ -28,6 +28,9 @@ const UserFeed = () => {
         postServices.likePost(posts[index]._id)
             .then(() => {
                 toast.success("Post liked successfully");
+
+                // realod the loader data
+                // navigate("/dashboard/feed", { replace: true });
             })
             .catch((error) => {
 

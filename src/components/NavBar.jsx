@@ -127,7 +127,7 @@ function NavBar({ user }) {
                                         </MenuItem>
                                         <MenuItem>
                                             <Link
-                                                to="/dashboard/logout"
+                                                to={user.role === 'admin' ? '/admin/dashboard/logout' : '/dashboard/logout'}
                                                 className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                                             >
                                                 Sign out
