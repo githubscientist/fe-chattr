@@ -19,7 +19,6 @@ const getNavigation = (user) => {
             return [
                 { name: 'Dashboard', href: '/dashboard', current: true },
                 { name: 'Feed', href: '/dashboard/feed', current: false },
-                { name: 'Profile', href: '/profile', current: false },
                 { name: 'Logout', href: '/dashboard/logout', current: false },
             ]
         }
@@ -111,7 +110,7 @@ function NavBar({ user }) {
                                     >
                                         <MenuItem>
                                             <Link
-                                                to="#"
+                                                to={user.role === 'admin' ? '/admin/dashboard/profile' : '/dashboard/profile'}
                                                 className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                                             >
                                                 Your Profile

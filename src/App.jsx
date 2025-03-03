@@ -17,6 +17,7 @@ import UserFeed from "./pages/user/UserFeed";
 import CreatePost from "./pages/user/CreatePost";
 import userFeedLoader from "./loaders/combined/userFeedLoader";
 import ConfirmationDialog from "./components/ConfirmationDialog";
+import ProfilePage from "./pages/user/ProfilePage";
 
 const routes = [
   {
@@ -63,6 +64,12 @@ const routes = [
       {
         path: "create-post",
         element: <CreatePost />
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
+        loader: authLoader,
+        hydrateFallbackElement: <p>Loading profile...</p>
       }
     ]
   },
@@ -80,6 +87,12 @@ const routes = [
         path: "logout",
         element: <Logout />,
         hydrateFallbackElement: <p>Please wait...</p>
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
+        loader: authLoader,
+        hydrateFallbackElement: <p>Loading profile...</p>
       }
     ]
   }
