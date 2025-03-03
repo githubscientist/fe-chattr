@@ -60,6 +60,7 @@ const UserFeed = () => {
                                     {
                                         filled[index] ? <SolidHeart className="text-red-600 h-6 w-6" /> : <OutlineHeart className="w-6 h-6 text-black" />
                                     }
+                                    <p className="ml-2">{post.likes.length}</p>
                                 </div>
 
                                 <div className="flex justify-end">
