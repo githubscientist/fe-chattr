@@ -4,10 +4,13 @@ import { HeartIcon as SolidHeart } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import postServices from "../../services/postServices";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { openDialog } from "../../redux/features/dialog/confirmationSlice";
 
 const UserFeed = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const { user, posts } = useLoaderData();
 
@@ -29,13 +32,20 @@ const UserFeed = () => {
             .then(() => {
                 toast.success("Post liked successfully");
 
-                // realod the loader data
+                // reload the loader data
                 // navigate("/dashboard/feed", { replace: true });
             })
             .catch((error) => {
-
                 toast.error("Failed to like post");
             });
+    }
+
+    const handleDelete = (index) => {
+        dispatch(openDialog({
+            message: "Are you sure you want to delete this post?",
+            actionType: 'DELETE_POST',
+            postId: posts[index]._id,
+        }));
     }
 
     return (
@@ -65,7 +75,9 @@ const UserFeed = () => {
 
                                 <div className="flex justify-end">
                                     <span className="text-blue-600 cursor-pointer hover:underline">Edit</span>
-                                    <span className="text-red-600 cursor-pointer hover:underline ml-4">Delete</span>
+                                    <span className="text-red-600 cursor-pointer hover:underline ml-4"
+                                        onClick={() => handleDelete(index)}
+                                    >Delete</span>
                                 </div>
                             </div>
                         </div>

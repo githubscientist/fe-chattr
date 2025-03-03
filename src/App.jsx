@@ -16,6 +16,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import UserFeed from "./pages/user/UserFeed";
 import CreatePost from "./pages/user/CreatePost";
 import userFeedLoader from "./loaders/combined/userFeedLoader";
+import ConfirmationDialog from "./components/ConfirmationDialog";
 
 const routes = [
   {
@@ -98,6 +99,7 @@ const App = () => {
   return <>
     <Provider store={store}>
       <ToastProvider />
+      <ConfirmationDialog />
       <RouterProvider router={router} />
     </Provider>
   </>
